@@ -151,11 +151,22 @@ function renderStep() {
       const btn = document.createElement("button");
       btn.textContent = opt;
 
-      btn.onclick = () => {
-        if (i === step.correct) {
-          card.innerHTML = step.successText;
-        }
-      };
+     btn.onclick = () => {
+  if (i === step.correct) {
+    card.classList.add("fade-out");
+
+    setTimeout(() => {
+      card.classList.remove("fade-out");
+      card.innerHTML = "";
+
+      const msg = document.createElement("p");
+      msg.className = "post-quiz-message";
+      msg.textContent = step.successText;
+
+      card.appendChild(msg);
+    }, 400);
+  }
+};
 
       card.appendChild(btn);
     });
